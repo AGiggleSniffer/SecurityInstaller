@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using System.IO;
-using System.Diagnostics;
-using static MainWindow;
 using System.Windows.Interop;
-using WpfPoShGUI;
 using System.Windows.Threading;
-using System.Windows.Navigation;
-using System.Net.Http.Handlers;
-using System.Net.Http;
+using static MainWindow;
 using static SecurityInstaller.ToolResource;
 
 namespace SecurityInstaller
@@ -59,7 +53,6 @@ namespace SecurityInstaller
         /// <summary>
         /// Main Funtion on Button Click
         /// </summary>
-
         private async void StartBtn_Click(object sender, EventArgs e)
         {
             StartBtn.IsEnabled = false;

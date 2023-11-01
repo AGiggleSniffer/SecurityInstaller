@@ -52,6 +52,8 @@ namespace SecurityInstaller
 
             public static string toolLocation { get; } = @"C:\Program Files (x86)\Glary Utilities\OneClickMaintenance.exe";
 
+            public static string shortcutLocation { get; } = @"C:\Program Files (x86)\Glary Utilities\Integrator.exe";
+
             public static string toolSwitch { get; } = "/S";
         }
 
