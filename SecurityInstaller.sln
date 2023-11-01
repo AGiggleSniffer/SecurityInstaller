@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34018.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityInstaller", "SecurityInstaller\SecurityInstaller.csproj", "{F90C44FC-DCAC-4F23-82F3-65EC9E68F864}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F90C44FC-DCAC-4F23-82F3-65EC9E68F864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F90C44FC-DCAC-4F23-82F3-65EC9E68F864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F90C44FC-DCAC-4F23-82F3-65EC9E68F864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F90C44FC-DCAC-4F23-82F3-65EC9E68F864}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F51B6651-D4B9-44DD-A0F2-7C41CA29DB5E}
+	EndGlobalSection
+EndGlobal
