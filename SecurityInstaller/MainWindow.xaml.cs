@@ -6,8 +6,8 @@ using System.Windows.Input;
 using System.IO;
 using System.Windows.Interop;
 using System.Windows.Threading;
-using static MainWindow;
-using static SecurityInstaller.ToolResource;
+using static RoundCorners;
+using static ToolResource;
 
 namespace SecurityInstaller
 {

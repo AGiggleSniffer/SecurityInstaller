@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows;
 
-public partial class MainWindow : Window
+public partial class RoundCorners : Window
 {
     // The enum flag for DwmSetWindowAttribute's second parameter, which tells the function what attribute to set.
     // Copied from dwmapi.h

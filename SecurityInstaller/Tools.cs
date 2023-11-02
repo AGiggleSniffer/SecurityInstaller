@@ -6,12 +6,11 @@ using Microsoft.Win32;
 using System;
 using IWshRuntimeLibrary;
 using System.Windows.Resources;
-using static SecurityInstaller.ToolResource;
-
+using static ToolResource;
 
 public class Tools 
 {
-    /// Start DISM/SFC
+    // Start DISM/SFC
     public static bool FileChecker()
     {
         Process process = new Process();
@@ -25,8 +24,8 @@ public class Tools
         return true;
     }
 
-    /// Create Shortcuts
-    public static void Shortcut(string shortcutName, string targetFileLocation)
+    // Create Shortcuts
+    private static void Shortcut(string shortcutName, string targetFileLocation)
     {
         // Initialize shortcuts
         string shortcutLocation = Path.Combine(@"C:\Users\Public\Desktop\Nerds On Call 800-919NERD", shortcutName + ".lnk");
@@ -37,16 +36,16 @@ public class Tools
         shortcut.Save();
     }
 
-    /// Make NOC Folder
+    // Make NOC Folder
     public static async Task<bool> MakeNOC()
     {
         string dir = @"C:\Users\Public\Desktop\Nerds On Call 800-919NERD";
-        /// If directory does not exist, create it
+        // If directory does not exist, create it
         if (!Directory.Exists(dir))
         {
             DirectoryInfo folder = Directory.CreateDirectory(dir);
 
-            /// Create desktop.ini file
+            // Create desktop.ini file
             string deskIni = @"C:\Users\Public\Desktop\Nerds On Call 800-919NERD\desktop.ini";
             using (StreamWriter sw = new StreamWriter(deskIni))
             {
@@ -74,10 +73,10 @@ public class Tools
             }
 
 
-            ///// Copy Nerds icon then set Attributes
+            // Copy Nerds icon then set Attributes
             System.IO.File.SetAttributes(place, FileAttributes.Hidden);
 
-            /// Hide icon and desktop.ini then set folder as a system folder
+            // Hide icon and desktop.ini then set folder as a system folder
             System.IO.File.SetAttributes(deskIni, FileAttributes.Hidden);
             folder.Attributes |= FileAttributes.System;
             folder.Attributes |= FileAttributes.ReadOnly;
@@ -113,7 +112,7 @@ public class Tools
         return true;
     }
 
-    /// Adds Registry keys so next time Chrome or Edge opens, it updates or asks to install UBlock Origin
+    // Adds Registry keys so next time Chrome or Edge opens, it updates or asks to install UBlock Origin
     public static async Task<bool> InstallUB()
     {
 
@@ -121,7 +120,7 @@ public class Tools
 
         var GC = await Task.Run<bool>(() =>
         {
-            /// Write to Google Chrome
+            // Write to Google Chrome
             string value = "https://clients2.google.com/service/update2/crx";
             string key = @"HKEY_LOCAL_MACHINE\Software\Wow6432Node\Google\Chrome\Extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm";
             Registry.SetValue(key, valueName, value, RegistryValueKind.String);
