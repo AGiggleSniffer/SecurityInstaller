@@ -203,7 +203,7 @@ public static class ComputerInfo
 
                         obj.Dispose();
                     }
-                    memorySize = memorySize / 1073741824;
+                    memorySize /= 1073741824;
                     memSizestring = memorySize.ToString();
                 }
             }

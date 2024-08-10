@@ -315,7 +315,7 @@ namespace SecurityInstaller
                 e.PercentageComplete = (e.SupportTotal + e.AdwTotal + e.MbTotal + e.GuTotal + e.CcTotal) / e.DownloaderCount;
             }
             this.ProgressBar1.Value = e.PercentageComplete;
-            this.ProgressText.Text = $"Downloading {e.DownloadCompleted}/{e.DownloaderCount} items - Download {e.PercentageComplete}% complete";
+            this.ProgressText.Text = $"{e.DownloadCompleted}/{e.DownloaderCount} items - Download {e.PercentageComplete}% complete";
         }
     }
 }

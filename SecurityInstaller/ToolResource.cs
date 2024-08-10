@@ -3,20 +3,20 @@ using System.IO;
 
 public static class ToolResource
 {
-    public static class Support
+    public readonly struct Support
     {
         public static Uri toolUrl { get; } = new Uri("https://s3-us-west-2.amazonaws.com/nerdtools/remote.msi");
 
         public static string toolName { get; } = "Remote.msi";
 
-        public static string toolLocation { get; } = Path.Combine(Directory.GetCurrentDirectory(), "Remote.msi");
+        public static string toolLocation { get; } = $@"""{Path.Combine(Directory.GetCurrentDirectory(), toolName)}""";
 
         public static string toolSwitch { get; } = "/qn";
     }
 
     //
 
-    public static class Adw 
+    public readonly struct Adw 
     {
         public static Uri toolUrl { get; } = new Uri("https://adwcleaner.malwarebytes.com/adwcleaner?channel=release");
 
@@ -24,14 +24,14 @@ public static class ToolResource
 
         public static string toolLocation { get; } = @"cmd.exe";
 
-        public static string toolSwitch { get; } = $@"/k {Path.Combine(Directory.GetCurrentDirectory(), toolName)} /eula /clean /noreboot";
+        public static string toolSwitch { get; } = $@"/k ""{Path.Combine(Directory.GetCurrentDirectory(), toolName)}"" /eula /clean /noreboot";
     }
 
     //
 
-    public static class Malwarebytes
+    public readonly struct Malwarebytes
     {
-        public static Uri toolUrl { get; } = new Uri("https://www.malwarebytes.com/api/downloads/mb-windows?filename=MBSetup.exe");
+        public static Uri toolUrl { get; } = new Uri("https://downloads.malwarebytes.com/file/mb-windows");
 
         public static string toolName { get; } = "MBSetup.exe";
 
@@ -42,7 +42,7 @@ public static class ToolResource
 
     //
 
-    public static class Glary
+    public readonly struct Glary
     {
         public static Uri toolUrl { get; } = new Uri("https://www.glarysoft.com/aff/download.php?s=GU");
 
@@ -57,7 +57,7 @@ public static class ToolResource
 
     //
 
-    public static class Ccleaner
+    public readonly struct Ccleaner
     {
         public static Uri toolUrl { get; } = new Uri("https://bits.avcdn.net/productfamily_CCLEANER/insttype_FREE/platform_WIN_PIR/installertype_ONLINE/build_RELEASE");
 

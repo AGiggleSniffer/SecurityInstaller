@@ -17,7 +17,7 @@ public class Tools
         ProcessStartInfo startInfo = new ProcessStartInfo();
         startInfo.UseShellExecute = true;
         startInfo.FileName = "cmd.exe";
-        startInfo.Arguments = "/k dism /online /cleanup-image /restorehealth&sfc /scannow";
+        startInfo.Arguments = "pause | /k dism /online /cleanup-image /restorehealth&sfc /scannow";
         process.StartInfo = startInfo;
         process.Start();
 
@@ -32,7 +32,7 @@ public class Tools
         WshShell shell = new WshShell();
         IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutLocation);
 
-        shortcut.TargetPath = targetFileLocation;           // The path of the file that will launch when the shortcut is run
+        shortcut.TargetPath = targetFileLocation; // The path of the file that will launch when the shortcut is run
         shortcut.Save();
     }
 

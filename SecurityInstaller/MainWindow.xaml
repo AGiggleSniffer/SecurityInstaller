@@ -348,6 +348,7 @@
                                      IsReadOnly="True"
                                      BorderThickness="0,0,0,0"
                                      FontWeight="Bold"
+                                     FontSize="16"
                                      VerticalAlignment="Top">
                             </TextBox>
                             <Button Margin="320,295,10,10"
