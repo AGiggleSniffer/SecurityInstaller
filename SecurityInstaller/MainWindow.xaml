@@ -288,34 +288,34 @@
                                 </StackPanel.RenderTransform>
 
                                 <CheckBox x:Name="cbSwitch"
-                                          Content="Download/Install/Update Tools"
+                                          Content="ALL Tools"
                                           Foreground="#E8E9ED"
                                           Margin="20,5,0,5"
                                           IsChecked="True"
                                           Click="CBSwitch_Click"
                                           FontWeight="SemiBold" />
                                 <CheckBox x:Name="adw"
-                                          Content="Run ADWCleaner"
+                                          Content="ADWCleaner"
                                           Foreground="#E8E9ED"
-                                          Margin="60,5,0,5"
+                                          Margin="45,5,0,5"
                                           IsChecked="True"
                                           FontWeight="SemiBold" />
                                 <CheckBox x:Name="mb"
-                                          Content="Open Malwarebytes"
+                                          Content="Malwarebytes"
                                           Foreground="#E8E9ED"
-                                          Margin="60,5,0,5"
+                                          Margin="45,5,0,5"
                                           IsChecked="True"
                                           FontWeight="SemiBold" />
                                 <CheckBox x:Name="gu"
-                                          Content="Open Glary Utilities"
+                                          Content="Glary Utilities"
                                           Foreground="#E8E9ED"
-                                          Margin="60,5,0,5"
+                                          Margin="45,5,0,5"
                                           IsChecked="True"
                                           FontWeight="SemiBold" />
                                 <CheckBox x:Name="cc"
-                                          Content="Open CCleaner"
+                                          Content="CCleaner"
                                           Foreground="#E8E9ED"
-                                          Margin="60,5,0,5"
+                                          Margin="45,5,0,5"
                                           IsChecked="True"
                                           FontWeight="SemiBold" />
                             </StackPanel>
