@@ -1,4 +1,5 @@
-﻿<Window x:Name="Form" x:Class="SecurityInstaller.MainWindow"
+﻿<Window x:Name="Form"
+        x:Class="SecurityInstaller.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,80 +7,85 @@
         xmlns:local="clr-namespace:SecurityInstaller"
         Loaded="OnLoad"
         mc:Ignorable="d"
-        Title="AutoTune" 
-        Height="450" 
-        Width="800" 
+        Title="AutoTune"
+        Height="450"
+        Width="800"
         Background="#222526"
-        WindowStyle="None" 
-        SizeToContent="WidthAndHeight" 
-        ResizeMode="NoResize" 
-        MinHeight="450" 
-        MinWidth="800" 
+        WindowStyle="None"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        MinHeight="450"
+        MinWidth="800"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="False">
 
-    <Grid HorizontalAlignment="Left" Width="800">
+    <Grid HorizontalAlignment="Left"
+          Width="800">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition/>
+            <RowDefinition Height="25" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Grid Background="#033B81"
-                Grid.ColumnSpan="2"
-                MouseDown="Grid_MouseDown">
+              Grid.ColumnSpan="2"
+              MouseDown="Grid_MouseDown">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <Image Source="nerd.ico">
                 <Image.Effect>
-                    <DropShadowEffect BlurRadius="15" Direction="-8"
-                                  RenderingBias="Quality" ShadowDepth="2"/>
+                    <DropShadowEffect BlurRadius="15"
+                                      Direction="-8"
+                                      RenderingBias="Quality"
+                                      ShadowDepth="2" />
                 </Image.Effect>
             </Image>
 
 
             <TextBlock Text="AutoTune"
-                Foreground="#BFC9FE"
-                Grid.Column="1"
-                Grid.ColumnSpan="3"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                FontWeight="Medium">
+                       Foreground="#BFC9FE"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="3"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontWeight="Medium">
 
                 <TextBlock.Effect>
-                    <DropShadowEffect BlurRadius="15" Direction="-8"
-                                      RenderingBias="Quality" ShadowDepth="2"/>
+                    <DropShadowEffect BlurRadius="15"
+                                      Direction="-8"
+                                      RenderingBias="Quality"
+                                      ShadowDepth="2" />
                 </TextBlock.Effect>
             </TextBlock>
 
@@ -93,17 +99,23 @@
                     BorderThickness="0,0,0,0">
 
                 <Button.Effect>
-                    <DropShadowEffect BlurRadius="15" Direction="-8"
-                                  RenderingBias="Quality" ShadowDepth="2"/>
+                    <DropShadowEffect BlurRadius="15"
+                                      Direction="-8"
+                                      RenderingBias="Quality"
+                                      ShadowDepth="2" />
                 </Button.Effect>
 
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Background"
+                                Value="Transparent" />
+                        <Setter Property="Cursor"
+                                Value="Hand" />
                         <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="Gray"/>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="Gray" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -113,13 +125,13 @@
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}">
                             <ContentPresenter VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"/>
+                                              HorizontalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
 
-            <Button Name="ExitBtn" 
+            <Button Name="ExitBtn"
                     Content="X"
                     Foreground="#BFC9FE"
                     FontSize="12"
@@ -129,17 +141,23 @@
                     BorderThickness="0,0,0,0">
 
                 <Button.Effect>
-                    <DropShadowEffect BlurRadius="15" Direction="-8"
-                                      RenderingBias="Quality" ShadowDepth="2"/>
+                    <DropShadowEffect BlurRadius="15"
+                                      Direction="-8"
+                                      RenderingBias="Quality"
+                                      ShadowDepth="2" />
                 </Button.Effect>
 
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Background"
+                                Value="Transparent" />
+                        <Setter Property="Cursor"
+                                Value="Hand" />
                         <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="Red"/>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="Red" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -150,7 +168,7 @@
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}">
                             <ContentPresenter VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"/>
+                                              HorizontalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
@@ -162,8 +180,10 @@
             <StackPanel>
 
                 <StackPanel.Effect>
-                    <DropShadowEffect BlurRadius="40" Direction="-8"
-                                      RenderingBias="Quality" ShadowDepth="2"/>
+                    <DropShadowEffect BlurRadius="40"
+                                      Direction="-8"
+                                      RenderingBias="Quality"
+                                      ShadowDepth="2" />
                 </StackPanel.Effect>
 
                 <StackPanel Orientation="Horizontal"
@@ -173,52 +193,188 @@
                                Foreground="#D6D8DE"
                                FontSize="20"
                                FontWeight="Medium"
-                               VerticalAlignment="Center"/>
+                               VerticalAlignment="Center" />
                 </StackPanel>
 
                 <Grid Grid.Row="1"
-                      Background="Transparent" 
-                      Width="350" 
+                      Background="Transparent"
+                      Width="350"
                       Height="300"
-                      Margin="0, 10, 0, 0">
+                      Margin="0, 30, 0, 0">
                     <Border BorderBrush="#46494D"
                             BorderThickness="1,1,1,1"
                             CornerRadius="5"
                             Background="#46494D">
                     </Border>
+                    <TabControl Background="Transparent"
+                                BorderThickness="0,0,0,0"
+                                Margin="0,-20,0,0">
+                        <TabControl.Resources>
+                            <Style TargetType="{x:Type TabItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TabItem}">
+                                            <Grid>
+                                                <Border Name="Border"
+                                                        Margin="0,0,0,0"
+                                                        Background="#27292B"
+                                                        BorderThickness="0,0,0,0"
+                                                        CornerRadius="2"
+                                                        Height="20">
 
-                    <StackPanel Background="Transparent"
-                                Margin="0,4,0,0"
-                                VerticalAlignment="Center">
-
-                        <StackPanel.Effect>
-                            <DropShadowEffect BlurRadius="15" Direction="-8"
-                                              RenderingBias="Quality" ShadowDepth="2"/>
-                        </StackPanel.Effect>
-
-                        <StackPanel.Style>
-                            <Style TargetType="StackPanel">
-                                <Setter Property="Cursor" Value="Hand"/>
+                                                    <ContentPresenter x:Name="ContentSite"
+                                                                      VerticalAlignment="Center"
+                                                                      HorizontalAlignment="Center"
+                                                                      ContentSource="Header"
+                                                                      RecognizesAccessKey="True"
+                                                                      TextBlock.Foreground="#E8E9ED">
+                                                    </ContentPresenter>
+                                                </Border>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected"
+                                                         Value="True">
+                                                    <Setter Property="Panel.ZIndex"
+                                                            Value="100" />
+                                                    <Setter TargetName="Border"
+                                                            Property="Background"
+                                                            Value="#46494D" />
+                                                    <Setter TargetName="Border"
+                                                            Property="Margin"
+                                                            Value="0,0,0,2" />
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver"
+                                                         Value="True">
+                                                    <Setter TargetName="Border"
+                                                            Property="Background"
+                                                            Value="#46494D" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Cursor"
+                                        Value="Hand" />
                             </Style>
-                        </StackPanel.Style>
+                        </TabControl.Resources>
 
-                        <StackPanel.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
-                                <TranslateTransform Y="-15"/>
-                            </TransformGroup>
-                        </StackPanel.RenderTransform>
+                        <TabItem x:Name="Downloads"
+                                 Header="Downloads"
+                                 Width="80"
+                                 Margin="0,0,0,0">
+                            <StackPanel Background="Transparent"
+                                        Margin="0,30,0,0">
 
-                        <CheckBox x:Name="sfc" Content="Start Dism/SFC" Foreground="#E8E9ED" Margin="20,5,0,5" FontWeight="SemiBold"/>
-                        <CheckBox x:Name="noc" Content="Make NOC Folder" Foreground="#E8E9ED" Margin="20,5,0,5" FontWeight="SemiBold"/>
-                        <CheckBox x:Name="remote" Content="Install/Repair NOC Calling Card" Foreground="#E8E9ED" Margin="20,5,0,5" FontWeight="SemiBold"/>
-                        <CheckBox x:Name="uBlock" Content="Install UBlock Origin to Edge/Chrome" Foreground="#E8E9ED" Margin="20,5,0,5" FontWeight="SemiBold"/>
-                        <CheckBox x:Name="CB4" Content="Download/Install/Update Tools" Foreground="#E8E9ED" Margin="20,5,0,5" IsChecked="True" Click="CB4_Click" FontWeight="SemiBold"/>
-                        <CheckBox x:Name="adw" Content="Run ADWCleaner" Foreground="#E8E9ED" Margin="60,5,0,5" IsChecked="True" FontWeight="SemiBold"/>
-                        <CheckBox x:Name="mb" Content="Open Malwarebytes" Foreground="#E8E9ED" Margin="60,5,0,5" IsChecked="True" FontWeight="SemiBold"/>
-                        <CheckBox x:Name="gu" Content="Open Glary Utilities" Foreground="#E8E9ED" Margin="60,5,0,5" IsChecked="True" FontWeight="SemiBold"/>
-                        <CheckBox x:Name="cc" Content="Open CCleaner" Foreground="#E8E9ED" Margin="60,5,0,5" IsChecked="True" FontWeight="SemiBold"/>
-                    </StackPanel>
+                                <StackPanel.Effect>
+                                    <DropShadowEffect BlurRadius="15"
+                                                      Direction="-8"
+                                                      RenderingBias="Quality"
+                                                      ShadowDepth="2" />
+                                </StackPanel.Effect>
+
+                                <StackPanel.Style>
+                                    <Style TargetType="StackPanel">
+                                        <Setter Property="Cursor"
+                                                Value="Hand" />
+                                    </Style>
+                                </StackPanel.Style>
+
+                                <StackPanel.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.1"
+                                                        ScaleY="1.1" />
+                                        <TranslateTransform Y="-15" />
+                                    </TransformGroup>
+                                </StackPanel.RenderTransform>
+
+                                <CheckBox x:Name="cbSwitch"
+                                          Content="Download/Install/Update Tools"
+                                          Foreground="#E8E9ED"
+                                          Margin="20,5,0,5"
+                                          IsChecked="True"
+                                          Click="CBSwitch_Click"
+                                          FontWeight="SemiBold" />
+                                <CheckBox x:Name="adw"
+                                          Content="Run ADWCleaner"
+                                          Foreground="#E8E9ED"
+                                          Margin="60,5,0,5"
+                                          IsChecked="True"
+                                          FontWeight="SemiBold" />
+                                <CheckBox x:Name="mb"
+                                          Content="Open Malwarebytes"
+                                          Foreground="#E8E9ED"
+                                          Margin="60,5,0,5"
+                                          IsChecked="True"
+                                          FontWeight="SemiBold" />
+                                <CheckBox x:Name="gu"
+                                          Content="Open Glary Utilities"
+                                          Foreground="#E8E9ED"
+                                          Margin="60,5,0,5"
+                                          IsChecked="True"
+                                          FontWeight="SemiBold" />
+                                <CheckBox x:Name="cc"
+                                          Content="Open CCleaner"
+                                          Foreground="#E8E9ED"
+                                          Margin="60,5,0,5"
+                                          IsChecked="True"
+                                          FontWeight="SemiBold" />
+                            </StackPanel>
+                        </TabItem>
+
+
+
+                        <TabItem x:Name="CBTools"
+                                 Header="Tools"
+                                 Width="80"
+                                 Margin="0,0,0,0">
+                            <StackPanel Background="Transparent"
+                                        Margin="0,30,0,0">
+
+                                <StackPanel.Effect>
+                                    <DropShadowEffect BlurRadius="15"
+                                                      Direction="-8"
+                                                      RenderingBias="Quality"
+                                                      ShadowDepth="2" />
+                                </StackPanel.Effect>
+
+                                <StackPanel.Style>
+                                    <Style TargetType="StackPanel">
+                                        <Setter Property="Cursor"
+                                                Value="Hand" />
+                                    </Style>
+                                </StackPanel.Style>
+
+                                <StackPanel.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.1"
+                                                        ScaleY="1.1" />
+                                        <TranslateTransform Y="-15" />
+                                    </TransformGroup>
+                                </StackPanel.RenderTransform>
+
+                                <CheckBox x:Name="sfc"
+                                          Content="Start Dism/SFC"
+                                          Foreground="#E8E9ED"
+                                          Margin="20,5,0,5"
+                                          FontWeight="SemiBold" />
+                                <CheckBox x:Name="noc"
+                                          Content="Make NOC Folder"
+                                          Foreground="#E8E9ED"
+                                          Margin="20,5,0,5"
+                                          FontWeight="SemiBold" />
+                                <CheckBox x:Name="remote"
+                                          Content="Install/Repair NOC Calling Card"
+                                          Foreground="#E8E9ED"
+                                          Margin="20,5,0,5"
+                                          FontWeight="SemiBold" />
+                                <CheckBox x:Name="uBlock"
+                                          Content="Install UBlock Origin to Edge/Chrome"
+                                          Foreground="#E8E9ED"
+                                          Margin="20,5,0,5"
+                                          FontWeight="SemiBold" />
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
                 </Grid>
 
                 <StackPanel Orientation="Horizontal"
@@ -226,11 +382,12 @@
 
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
-                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Cursor"
+                                    Value="Hand" />
                         </Style>
                     </StackPanel.Style>
 
-                    <Button Name="StartBtn" 
+                    <Button Name="StartBtn"
                             Content="Start"
                             Foreground="#BFC9FE"
                             FontSize="14"
@@ -239,11 +396,15 @@
 
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#033B81"/>
-                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Background"
+                                        Value="#033B81" />
+                                <Setter Property="Cursor"
+                                        Value="Hand" />
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#002B54"/>
+                                    <Trigger Property="IsMouseOver"
+                                             Value="True">
+                                        <Setter Property="Background"
+                                                Value="#002B54" />
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -251,19 +412,35 @@
 
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Width="100" Height="25"
+                                <Border Width="100"
+                                        Height="25"
                                         CornerRadius="5"
                                         Background="{TemplateBinding Background}">
                                     <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
+                                                      HorizontalAlignment="Center" />
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
 
-                    <CheckBox x:Name="download" Content="Download" Foreground="#E8E9ED" Margin="10,5,5,5" IsChecked="True" FontWeight="SemiBold"/>
-                    <CheckBox x:Name="install" Content="Install" Foreground="#E8E9ED" Margin="5,5,5,5" IsChecked="True" FontWeight="SemiBold"/>
-                    <CheckBox x:Name="run" Content="Run" Foreground="#E8E9ED" Margin="5,5,5,5" IsChecked="True" FontWeight="SemiBold"/>
+                    <CheckBox x:Name="download"
+                              Content="Download"
+                              Foreground="#E8E9ED"
+                              Margin="10,5,5,5"
+                              IsChecked="True"
+                              FontWeight="SemiBold" />
+                    <CheckBox x:Name="install"
+                              Content="Install"
+                              Foreground="#E8E9ED"
+                              Margin="5,5,5,5"
+                              IsChecked="True"
+                              FontWeight="SemiBold" />
+                    <CheckBox x:Name="run"
+                              Content="Run"
+                              Foreground="#E8E9ED"
+                              Margin="5,5,5,5"
+                              IsChecked="True"
+                              FontWeight="SemiBold" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
@@ -274,17 +451,17 @@
                Grid.ColumnSpan="2"
                Height="450"
                Width="800"
-               Source="Images\astro.png" 
+               Source="Images\astro.png"
                Stretch="Fill">
         </Image>
 
         <StackPanel Grid.Row="1"
                     Grid.Column="1">
             <StackPanel.Effect>
-                <DropShadowEffect BlurRadius="40" 
+                <DropShadowEffect BlurRadius="40"
                                   Direction="-8"
-                                  RenderingBias="Quality" 
-                                  ShadowDepth="2"/>
+                                  RenderingBias="Quality"
+                                  ShadowDepth="2" />
             </StackPanel.Effect>
 
             <StackPanel>
@@ -298,15 +475,15 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type TabItem}">
                                         <Grid>
-                                            <Border Name="Border" 
-                                                    Margin="0,0,0,-3" 
+                                            <Border Name="Border"
+                                                    Margin="0,0,0,-3"
                                                     Background="#002B54"
-                                                    BorderBrush="#2360DB" 
-                                                    BorderThickness="0,0,0,0" 
+                                                    BorderBrush="#2360DB"
+                                                    BorderThickness="0,0,0,0"
                                                     CornerRadius="2"
                                                     Height="20">
 
-                                                <ContentPresenter x:Name="ContentSite" 
+                                                <ContentPresenter x:Name="ContentSite"
                                                                   VerticalAlignment="Center"
                                                                   HorizontalAlignment="Center"
                                                                   ContentSource="Header"
@@ -316,30 +493,44 @@
                                             </Border>
                                         </Grid>
                                         <ControlTemplate.Triggers>
-                                            <Trigger Property="IsSelected" Value="True">
-                                                <Setter Property="Panel.ZIndex" Value="100"/>
-                                                <Setter TargetName="Border" Property="Background" Value="#033B81" />
-                                                <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,2" />
-                                                <Setter TargetName="Border" Property="Margin" Value="0,0,0,-2" />
+                                            <Trigger Property="IsSelected"
+                                                     Value="True">
+                                                <Setter Property="Panel.ZIndex"
+                                                        Value="100" />
+                                                <Setter TargetName="Border"
+                                                        Property="Background"
+                                                        Value="#033B81" />
+                                                <Setter TargetName="Border"
+                                                        Property="BorderThickness"
+                                                        Value="1,1,1,2" />
+                                                <Setter TargetName="Border"
+                                                        Property="Margin"
+                                                        Value="0,0,0,-2" />
                                             </Trigger>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="Border" Property="Background" Value="#033B81"/>
+                                            <Trigger Property="IsMouseOver"
+                                                     Value="True">
+                                                <Setter TargetName="Border"
+                                                        Property="Background"
+                                                        Value="#033B81" />
                                             </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
-                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Cursor"
+                                    Value="Hand" />
                         </Style>
                     </TabControl.Resources>
 
-                    <TabItem x:Name="Tab1" 
+                    <TabItem x:Name="AssetInfo"
                              Header="Asset Info"
                              Width="80">
                         <Grid Background="Transparent">
                             <Grid.Effect>
-                                <DropShadowEffect BlurRadius="30" Direction="-8"
-                                              RenderingBias="Quality" ShadowDepth="2"/>
+                                <DropShadowEffect BlurRadius="30"
+                                                  Direction="-8"
+                                                  RenderingBias="Quality"
+                                                  ShadowDepth="2" />
                             </Grid.Effect>
                             <TextBox Name="AssetOutput"
                                      Background="Transparent"
@@ -362,11 +553,15 @@
 
                                 <Button.Style>
                                     <Style TargetType="Button">
-                                        <Setter Property="Background" Value="#033B81"/>
-                                        <Setter Property="Cursor" Value="Hand"/>
+                                        <Setter Property="Background"
+                                                Value="#033B81" />
+                                        <Setter Property="Cursor"
+                                                Value="Hand" />
                                         <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#002B54"/>
+                                            <Trigger Property="IsMouseOver"
+                                                     Value="True">
+                                                <Setter Property="Background"
+                                                        Value="#002B54" />
                                             </Trigger>
                                         </Style.Triggers>
                                     </Style>
@@ -377,7 +572,7 @@
                                         <Border CornerRadius="5"
                                                 Background="{TemplateBinding Background}">
                                             <ContentPresenter VerticalAlignment="Center"
-                                                              HorizontalAlignment="Center"/>
+                                                              HorizontalAlignment="Center" />
                                         </Border>
                                     </ControlTemplate>
                                 </Button.Template>
@@ -385,22 +580,47 @@
                         </Grid>
                     </TabItem>
 
-                    <TabItem x:Name="Tab2" 
-                                    Header="Progress"
-                                    Width="80">
+                    <TabItem x:Name="HWMonitor"
+                             Header="HW Monitor"
+                             Width="80">
+                        <Grid Background="Transparent">
+                            <TextBox x:Name="Monitor"
+                                     Background="Transparent"
+                                     Foreground="DarkOrange"
+                                     Margin="5, 5, 5, 5"
+                                     IsReadOnly="True"
+                                     BorderThickness="0,0,0,0">
+
+                                <TextBox.Effect>
+                                    <DropShadowEffect BlurRadius="30"
+                                                      Direction="-8"
+                                                      RenderingBias="Quality"
+                                                      ShadowDepth="2"
+                                                      Color="DarkOrange" />
+                                </TextBox.Effect>
+                            </TextBox>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem x:Name="DebugProgress"
+                             Header="Progress"
+                             Width="80">
                         <Grid Background="Transparent">
                             <Image Source="Images/cortana.png"
-                                   Panel.ZIndex="10" Margin="237,182,-37,0">
+                                   Panel.ZIndex="10"
+                                   Margin="237,182,-37,0">
                                 <Image.Effect>
-                                    <DropShadowEffect BlurRadius="30" Direction="-8"
-                                                      RenderingBias="Quality" ShadowDepth="2"
-                                                      Color="LightBlue"/>
+                                    <DropShadowEffect BlurRadius="30"
+                                                      Direction="-8"
+                                                      RenderingBias="Quality"
+                                                      ShadowDepth="2"
+                                                      Color="LightBlue" />
                                 </Image.Effect>
                             </Image>
                             <Border CornerRadius="2"
-                                        BorderThickness="0,0,0,0"
-                                        BorderBrush="#2360DB"
-                                        Background="Black">
+                                    BorderThickness="0,0,0,0"
+                                    BorderBrush="#2360DB"
+                                    Background="Black">
 
                             </Border>
                             <TextBox x:Name="ScriptOutput"
@@ -411,9 +631,11 @@
                                      BorderThickness="0,0,0,0">
 
                                 <TextBox.Effect>
-                                    <DropShadowEffect BlurRadius="30" Direction="-8"
-                                                      RenderingBias="Quality" ShadowDepth="2"
-                                                      Color="DarkOrange"/>
+                                    <DropShadowEffect BlurRadius="30"
+                                                      Direction="-8"
+                                                      RenderingBias="Quality"
+                                                      ShadowDepth="2"
+                                                      Color="DarkOrange" />
                                 </TextBox.Effect>
                             </TextBox>
                         </Grid>
@@ -422,8 +644,10 @@
             </StackPanel>
             <StackPanel Margin="10,10,10,0">
                 <StackPanel.Effect>
-                    <DropShadowEffect BlurRadius="15" Direction="-8"
-                                          RenderingBias="Quality" ShadowDepth="2"/>
+                    <DropShadowEffect BlurRadius="15"
+                                      Direction="-8"
+                                      RenderingBias="Quality"
+                                      ShadowDepth="2" />
                 </StackPanel.Effect>
                 <TextBox Background="Transparent"
                          x:Name="ProgressText"
@@ -440,7 +664,7 @@
                              Background="#8E9399"
                              BorderThickness="0,0,0,0">
                 </ProgressBar>
-                <ProgressBar Height="10" 
+                <ProgressBar Height="10"
                              Name="ProgressBar2"
                              Value="0"
                              Margin="0,2,0,0"

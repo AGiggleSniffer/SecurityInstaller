@@ -261,9 +261,9 @@ namespace SecurityInstaller
         }
 
         // if checked enable child checkboxes else disable children
-        private void CB4_Click(object sender, RoutedEventArgs e)
+        private void CBSwitch_Click(object sender, RoutedEventArgs e)
         {
-            if (CB4.IsChecked == false)
+            if (cbSwitch.IsChecked == false)
             {
                 adw.IsEnabled = false;
                 adw.IsChecked = false;
@@ -281,7 +281,7 @@ namespace SecurityInstaller
                 cc.IsChecked = false;
                 cc.Opacity = .1;
             }
-            else if (CB4.IsChecked == true)
+            else if (cbSwitch.IsChecked == true)
             {
                 adw.IsEnabled = true;
                 adw.Opacity = 1;
