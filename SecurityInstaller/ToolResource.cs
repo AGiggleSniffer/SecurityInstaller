@@ -1,71 +1,37 @@
 ﻿using System;
 using System.IO;
 
+public struct Tool
+{
+    public Uri ToolUrl { get; private set; }
+
+    public string ToolName { get; private set; }
+
+    public string ToolLocation { get; private set; }
+
+    public string ToolCliSwitch { get; private set; }
+
+    public string ShortcutLocation { get; private set; }
+
+    public int PercentageComplete { get; set; } 
+
+    public Tool(string url, string name, string location, string cliSwitch, string shortcutLoc = null)
+    {
+        ToolUrl = new Uri(url);
+        ToolName = name;
+        ToolLocation = location;
+        ToolCliSwitch = cliSwitch;
+        ShortcutLocation = shortcutLoc;
+        PercentageComplete = 0;
+    }
+}
+
 public static class ToolResource
 {
-    public readonly struct Support
-    {
-        public static Uri toolUrl { get; } = new Uri("https://s3-us-west-2.amazonaws.com/nerdtools/remote.msi");
-
-        public static string toolName { get; } = "Remote.msi";
-
-        public static string toolLocation { get; } = $@"""{Path.Combine(Directory.GetCurrentDirectory(), toolName)}""";
-
-        public static string toolSwitch { get; } = "/qn";
-    }
-
-    //
-
-    public readonly struct Adw 
-    {
-        public static Uri toolUrl { get; } = new Uri("https://adwcleaner.malwarebytes.com/adwcleaner?channel=release");
-
-        public static string toolName { get; } = "ADWCleaner.exe";
-
-        public static string toolLocation { get; } = @"cmd.exe";
-
-        public static string toolSwitch { get; } = $@"/k ""{Path.Combine(Directory.GetCurrentDirectory(), toolName)}"" /eula /clean /noreboot";
-    }
-
-    //
-
-    public readonly struct Malwarebytes
-    {
-        public static Uri toolUrl { get; } = new Uri("https://downloads.malwarebytes.com/file/mb-windows");
-
-        public static string toolName { get; } = "MBSetup.exe";
-
-        public static string toolLocation { get; } = @"C:\Program Files\Malwarebytes\Anti-Malware\mbam.exe";
-
-        public static string toolSwitch { get; } = "/verysilent /noreboot";
-    }
-
-    //
-
-    public readonly struct Glary
-    {
-        public static Uri toolUrl { get; } = new Uri("https://www.glarysoft.com/aff/download.php?s=GU");
-
-        public static string toolName { get; } = "GUSetup.exe";
-
-        public static string toolLocation { get; } = @"C:\Program Files (x86)\Glary Utilities\OneClickMaintenance.exe";
-
-        public static string shortcutLocation { get; } = @"C:\Program Files (x86)\Glary Utilities\Integrator.exe";
-
-        public static string toolSwitch { get; } = "/S";
-    }
-
-    //
-
-    public readonly struct Ccleaner
-    {
-        public static Uri toolUrl { get; } = new Uri("https://bits.avcdn.net/productfamily_CCLEANER/insttype_FREE/platform_WIN_PIR/installertype_ONLINE/build_RELEASE");
-
-        public static string toolName { get; } = "CCSetup.exe";
-
-        public static string toolLocation { get; } = @"C:\Program Files\CCleaner\CCleaner64.exe";
-
-        public static string toolSwitch { get; } = "/S";
-    }
+    public static Tool Support { get; private set; } = new Tool("https://s3-us-west-2.amazonaws.com/nerdtools/remote.msi", "Remote.msi", $@"""{Path.Combine(Directory.GetCurrentDirectory(), "Remote.msi")}""", "/qn");
+    public static Tool Adw { get; private set; } = new Tool("https://adwcleaner.malwarebytes.com/adwcleaner?channel=release", "ADWCleaner.exe", @"cmd.exe", $@"/k ""{Path.Combine(Directory.GetCurrentDirectory(), "ADWCleaner.exe")}"" /eula /clean /noreboot");
+    public static Tool Malwarebytes { get; private set; } = new Tool("https://downloads.malwarebytes.com/file/mb-windows", "MBSetup.exe", @"C:\Program Files\Malwarebytes\Anti-Malware\mbam.exe", "/verysilent /noreboot");
+    public static Tool Glary { get; private set; } = new Tool("https://www.glarysoft.com/aff/download.php?s=GU", "GUSetup.exe", @"C:\Program Files (x86)\Glary Utilities\OneClickMaintenance.exe", "/S", @"C:\Program Files (x86)\Glary Utilities\Integrator.exe");
+    public static Tool CCleaner { get; private set; } = new Tool("https://bits.avcdn.net/productfamily_CCLEANER/insttype_FREE/platform_WIN_PIR/installertype_ONLINE/build_RELEASE", "CCSetup.exe", @"C:\Program Files\CCleaner\CCleaner64.exe", "/S");
 }
 

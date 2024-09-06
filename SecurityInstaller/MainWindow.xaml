@@ -258,8 +258,8 @@
                             </Style>
                         </TabControl.Resources>
 
-                        <TabItem x:Name="Downloads"
-                                 Header="Downloads"
+                        <TabItem x:Name="programs"
+                                 Header="Programs"
                                  Width="80"
                                  Margin="0,0,0,0">
                             <StackPanel Background="Transparent"
@@ -323,6 +323,83 @@
 
 
 
+
+
+                        <TabItem x:Name="commonPrograms"
+                                 Header="More Programs"
+                                 Width="100"
+                                 Margin="0,0,0,0">
+                            <StackPanel Background="Transparent"
+                                        Margin="0,30,0,0">
+
+                                <StackPanel.Effect>
+                                    <DropShadowEffect BlurRadius="15"
+                                                      Direction="-8"
+                                                      RenderingBias="Quality"
+                                                      ShadowDepth="2" />
+                                </StackPanel.Effect>
+
+                                <StackPanel.Style>
+                                    <Style TargetType="StackPanel">
+                                        <Setter Property="Cursor"
+                                                Value="Hand" />
+                                    </Style>
+                                </StackPanel.Style>
+
+                                <StackPanel.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1.1"
+                                                        ScaleY="1.1" />
+                                        <TranslateTransform Y="-15" />
+                                    </TransformGroup>
+                                </StackPanel.RenderTransform>
+
+                                <CheckBox x:Name="cbCpSwitch"
+                                          Content="ALL Common Programs"
+                                          Foreground="#E8E9ED"
+                                          Margin="20,5,0,5"
+                                          Click="CBCpSwitch_Click"
+                                          FontWeight="SemiBold" />
+                                <CheckBox x:Name="chrome"
+                                          Content="Chrome"
+                                          Foreground="#E8E9ED"
+                                          Margin="45,5,0,5"
+                                          IsChecked="False"
+                                          FontWeight="SemiBold"
+                                          Opacity="0.1"/>
+                                <CheckBox x:Name="ff"
+                                          Content="Firefox"
+                                          Foreground="#E8E9ED"
+                                          Margin="45,5,0,5"
+                                          FontWeight="SemiBold"
+                                          Opacity="0.1" />
+                                <CheckBox x:Name="libre"
+                                          Content="Libre Office"
+                                          Foreground="#E8E9ED"
+                                          Margin="45,5,0,5"
+                                          FontWeight="SemiBold"
+                                          Opacity="0.1"/>
+                                <CheckBox x:Name="adobe"
+                                          Content="Adobe Reader"
+                                          Foreground="#E8E9ED"
+                                          Margin="45,5,0,5"
+                                          FontWeight="SemiBold"
+                                          Opacity="0.1"/>
+                                <CheckBox x:Name="zip"
+                                          Content="7-Zip"
+                                          Foreground="#E8E9ED"
+                                          Margin="45,5,0,5"
+                                          FontWeight="SemiBold"
+                                          Opacity="0.1"/>
+                                <CheckBox x:Name="steam"
+                                          Content="Steam"
+                                          Foreground="#E8E9ED"
+                                          Margin="45,5,0,5"
+                                          FontWeight="SemiBold"
+                                          Opacity="0.1"/>
+                            </StackPanel>
+                        </TabItem>
+
                         <TabItem x:Name="CBTools"
                                  Header="Tools"
                                  Width="80"
@@ -354,6 +431,11 @@
 
                                 <CheckBox x:Name="sfc"
                                           Content="Start Dism/SFC"
+                                          Foreground="#E8E9ED"
+                                          Margin="20,5,0,5"
+                                          FontWeight="SemiBold" />
+                                <CheckBox x:Name="tpApps"
+                                          Content="Update Third Party Applications"
                                           Foreground="#E8E9ED"
                                           Margin="20,5,0,5"
                                           FontWeight="SemiBold" />

@@ -24,6 +24,20 @@ public class Tools
         return true;
     }
 
+    // Start Updates to third party applications
+    public static bool ThirdPartyUpdater()
+    {
+        Process process = new Process();
+        ProcessStartInfo startInfo = new ProcessStartInfo();
+        startInfo.UseShellExecute = true;
+        startInfo.FileName = "cmd.exe";
+        startInfo.Arguments = "pause | winget upgrade --all";
+        process.StartInfo = startInfo;
+        process.Start();
+
+        return true;
+    }
+
     // Create Shortcuts
     private static void Shortcut(string shortcutName, string targetFileLocation)
     {
@@ -86,21 +100,21 @@ public class Tools
         // Create Shortcutsss
 
         // MB Shortcut
-        if (System.IO.File.Exists(Malwarebytes.toolLocation))
+        if (System.IO.File.Exists(Malwarebytes.ToolLocation))
         {
-            Shortcut("Malwarebytes", Malwarebytes.toolLocation);
+            Shortcut("Malwarebytes", Malwarebytes.ToolLocation);
         }
 
         // CC Shortcut
-        if (System.IO.File.Exists(Ccleaner.toolLocation))
+        if (System.IO.File.Exists(CCleaner.ToolLocation))
         {
-            Shortcut("CCleaner", Ccleaner.toolLocation);
+            Shortcut("CCleaner", CCleaner.ToolLocation);
         }
 
         // GU Shortcut
-        if (System.IO.File.Exists(Glary.shortcutLocation))
+        if (System.IO.File.Exists(Glary.ShortcutLocation))
         {
-            Shortcut("Glary Utilities", Glary.shortcutLocation);
+            Shortcut("Glary Utilities", Glary.ShortcutLocation);
         }
 
         // ADW Shortcut

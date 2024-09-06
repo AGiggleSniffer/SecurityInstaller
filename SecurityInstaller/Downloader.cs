@@ -11,52 +11,53 @@ public static class Downloader
     private static readonly ProgressMessageHandler ph = new ProgressMessageHandler(handler);
     private static readonly HttpClient client = new HttpClient(ph);
 
-    public static async Task<bool> StartDownload(Uri url, string fileName, string location, string installSwitch, IProgress<int> progress, IProgress<int> progressBar2, IProgress<string> results, bool download, bool install, bool run)
+    public static async Task<bool> StartDownload(Tool tool, IProgress<int> progress, IProgress<int> progressBar2, IProgress<string> results, bool download, bool install, bool run)
     {
         var watch = Stopwatch.StartNew();
 
         ph.HttpReceiveProgress += (_, args) =>
         {
             progress.Report(args.ProgressPercentage);
+            tool.PercentageComplete = args.ProgressPercentage;
         };
 
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+        string filePath = Path.Combine(Directory.GetCurrentDirectory(), tool.ToolName);
 
         if (download == true)
         {
-            var rez = await Download(url, filePath);
+            var rez = await Download(tool.ToolUrl, filePath);
 
-            results.Report($"\n{fileName} download {rez}\nElapsed Time: {watch.ElapsedMilliseconds}ms");
+            results.Report($"\n{tool.ToolName} download {rez}\nElapsed Time: {watch.ElapsedMilliseconds}ms");
         }
 
-        if (install == true && !(fileName == "ADWCleaner.exe" || fileName == "Remote.msi"))
+        if (install == true && !(tool.ToolName == "ADWCleaner.exe" || tool.ToolName == "Remote.msi"))
         {
-            var rez = await Task.Run(() => Install(fileName, installSwitch, results));
+            var rez = await Task.Run(() => Install(tool.ToolName, tool.ToolCliSwitch, results));
 
-            results.Report($"{fileName} install {rez}\nElapsed Time: {watch.ElapsedMilliseconds}ms");
+            results.Report($"{tool.ToolName} install {rez}\nElapsed Time: {watch.ElapsedMilliseconds}ms");
         }
-        else if (install == true && run == false && fileName == "Remote.msi")
+        else if (install == true && run == false && tool.ToolName == "Remote.msi")
         {
-            await Task.Run(() => Process.Start(location, installSwitch));
+            await Task.Run(() => Process.Start(tool.ToolLocation, tool.ToolCliSwitch));
 
-            results.Report($"\n{fileName} opened in: {watch.ElapsedMilliseconds}ms");
+            results.Report($"\n{tool.ToolName} opened in: {watch.ElapsedMilliseconds}ms");
         }
 
         if (run == true)
         {
             try
             {
-                if (fileName == "ADWCleaner.exe" || fileName == "Remote.msi")
+                if (tool.ToolName == "ADWCleaner.exe" || tool.ToolName == "Remote.msi")
                 {
-                    await Task.Run(() => Process.Start(location, installSwitch));
+                    await Task.Run(() => Process.Start(tool.ToolLocation, tool.ToolCliSwitch));
 
-                    results.Report($"\n{fileName} opened in: {watch.ElapsedMilliseconds}ms");
+                    results.Report($"\n{tool.ToolName} opened in: {watch.ElapsedMilliseconds}ms");
                 }
                 else
                 {
-                    await Task.Run(() => Process.Start(location));
+                    await Task.Run(() => Process.Start(tool.ToolLocation));
 
-                    results.Report($"\n{fileName} opened in: {watch.ElapsedMilliseconds}ms");
+                    results.Report($"\n{tool.ToolName} opened in: {watch.ElapsedMilliseconds}ms");
                 }
             }
             catch (Exception ex)
