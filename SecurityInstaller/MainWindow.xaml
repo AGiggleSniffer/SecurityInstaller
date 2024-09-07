@@ -288,7 +288,7 @@
                                 </StackPanel.RenderTransform>
 
                                 <CheckBox x:Name="cbSwitch"
-                                          Content="ALL Tools"
+                                          Content="ALL Tuneup Tools"
                                           Foreground="#E8E9ED"
                                           Margin="20,5,0,5"
                                           IsChecked="True"
@@ -320,10 +320,6 @@
                                           FontWeight="SemiBold" />
                             </StackPanel>
                         </TabItem>
-
-
-
-
 
                         <TabItem x:Name="commonPrograms"
                                  Header="More Programs"
@@ -378,13 +374,7 @@
                                           Foreground="#E8E9ED"
                                           Margin="45,5,0,5"
                                           FontWeight="SemiBold"
-                                          Opacity="0.1"/>
-                                <CheckBox x:Name="adobe"
-                                          Content="Adobe Reader"
-                                          Foreground="#E8E9ED"
-                                          Margin="45,5,0,5"
-                                          FontWeight="SemiBold"
-                                          Opacity="0.1"/>
+                                          Opacity="0.1" />
                                 <CheckBox x:Name="zip"
                                           Content="7-Zip"
                                           Foreground="#E8E9ED"

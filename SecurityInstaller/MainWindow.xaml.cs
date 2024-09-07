@@ -6,10 +6,8 @@ using System.Windows.Input;
 using System.IO;
 using System.Windows.Interop;
 using System.Windows.Threading;
-using static ToolResource;
-using static RoundCorners;
 using System.Windows.Forms;
-using System.Diagnostics;
+using static RoundCorners;
 
 namespace SecurityInstaller
 {
@@ -50,12 +48,24 @@ namespace SecurityInstaller
             // Put hardware string into the correct box
             string info = await Task<string>.Run(() => ComputerInfo.asset);
             AssetOutput.Text = info;
+
+            GetPowerInfo();
+        }
+
+        private void GetPowerInfo()
+        {
+            PowerStatus pwr = SystemInformation.PowerStatus;
+
+            Monitor.Text += pwr.BatteryLifePercent.ToString();
         }
 
         private List<Task<bool>> tasks;
-        private IProgress<string> resultsProgress;
+        private ToolResource resources;
+        private ProgressReportModel report;
         private Progress<ProgressReportModel> progressModel;
         private IProgress<ProgressReportModel> progress => progressModel;
+        private IProgress<string> resultsProgress;
+        private IProgress<int> progressBarProgress;
 
         /// <summary>
         /// Main Funtion on Button Click
@@ -68,17 +78,30 @@ namespace SecurityInstaller
             ProgressBar1.Value = 0;
             ProgressBar2.Value = 0;
 
+            resources = new ToolResource();
+
             // Initialize list for tasks for counting / parallel async
             tasks = new List<Task<bool>>();
+
+            // Initialize progress report model
+            report = new ProgressReportModel();
 
             // Initialize custom Progress model and event
             progressModel = new Progress<ProgressReportModel>();
             progressModel.ProgressChanged += ReportProgress;
 
             // Progress reporter for task completion / error messages
-            resultsProgress = new Progress<string>(str => 
+            resultsProgress = new Progress<string>(str =>
             {
                 ScriptOutput.Text += $"\n{str}";
+            });
+
+            // Progress reporter for how many tasks have completed
+            progressBarProgress = new Progress<int>(value =>
+            {
+                ProgressBar2.Value += value;
+                report.DownloadCompleted++;
+                progress.Report(report);
             });
 
             // Add tasks to previous list with progress reporters
@@ -96,7 +119,7 @@ namespace SecurityInstaller
             {
                 try
                 {
-                    await Tools.MakeNOC();
+                    await Tools.MakeNOC(resources.Malwarebytes, resources.CCleaner, resources.Glary);
                     ScriptOutput.AppendText("\n\nNOC Folder Created");
                     ProgressBar2.Value += 1;
                 }
@@ -133,85 +156,16 @@ namespace SecurityInstaller
         // Add tasks to a list
         private void AddTasks()
         {
-            // Initialize progress report model
-            ProgressReportModel report = new ProgressReportModel();
-
-            // Progress reporter for how many tasks have completed
-            var progressBar2 = new Progress<int>(value =>
-            {
-                ProgressBar2.Value += value;
-                report.DownloadCompleted++;
-                progress.Report(report);
-            });
-
-            if (remote.IsChecked == true)
-            {
-                AddProgressTask(Support, report, progress, progressBar2);
-            } 
-
-            //// if checked
-            //if (remote.IsChecked == true)
-            //{
-            //    // create progress reporter to update specific value
-            //    var progressVal = new Progress<int>(value =>
-            //    {
-            //        // update report model
-            //        report.SupportTotal = value;
-
-            //        // send updated report model to event
-            //        progress.Report(report);
-            //    });
-
-            //    // Count how many downloads we are doing
-            //    report.DownloaderCount++;
-
-            //    // add task with reporters
-            //    tasks.Add(Downloader.StartDownload(Support.toolUrl, Support.toolName, Support.toolLocation, Support.toolSwitch, progressVal, progressBar2, results, downloadBool, installBool, runBool));
-            //}
-
-            //if (adw.IsChecked == true)
-            //{
-            //    var progressVal = new Progress<int>(value => 
-            //    {
-            //        report.AdwTotal = value;
-            //        progress.Report(report);
-            //    });
-            //    report.DownloaderCount++;
-            //    tasks.Add(Downloader.StartDownload(Adw.toolUrl, Adw.toolName, Adw.toolLocation, Adw.toolSwitch, progressVal, progressBar2, results, downloadBool, installBool, runBool));
-            //}
-
-            //if (mb.IsChecked == true)
-            //{
-            //    var progressVal = new Progress<int>(value => 
-            //    { 
-            //        report.MbTotal = value; 
-            //        progress.Report(report); 
-            //    });
-            //    report.DownloaderCount++;
-            //    tasks.Add(Downloader.StartDownload(Malwarebytes.toolUrl, Malwarebytes.toolName, Malwarebytes.toolLocation, Malwarebytes.toolSwitch, progressVal, progressBar2, results, downloadBool, installBool, runBool));
-            //}
-
-            //if (gu.IsChecked == true)
-            //{
-            //    var progressVal = new Progress<int>(value => 
-            //    { 
-            //        report.GuTotal = value; 
-            //        progress.Report(report); 
-            //    });
-            //    report.DownloaderCount++;
-            //    tasks.Add(Downloader.StartDownload(Glary.toolUrl, Glary.toolName, Glary.toolLocation, Glary.toolSwitch, progressVal, progressBar2, results, downloadBool, installBool, runBool));
-            //}
-
-            //if (cc.IsChecked == true)
-            //{
-            //    var progressVal = new Progress<int>(value => 
-            //    { 
-            //        report.CcTotal = value; 
-            //        progress.Report(report); 
-            //    });
-            //    report.DownloaderCount++;
-            //    tasks.Add(Downloader.StartDownload(Ccleaner.toolUrl, Ccleaner.toolName, Ccleaner.toolLocation, Ccleaner.toolSwitch, progressVal, progressBar2, results, downloadBool, installBool, runBool));
-            //}
+            if (remote.IsChecked == true) { AddProgressTask(resources.Support); }
+            if (adw.IsChecked == true) { AddProgressTask(resources.Adw); }
+            if (mb.IsChecked == true) { AddProgressTask(resources.Malwarebytes); }
+            if (gu.IsChecked == true) { AddProgressTask(resources.Glary); }
+            if (cc.IsChecked == true) { AddProgressTask(resources.CCleaner); }
+            if (chrome.IsChecked == true) { AddProgressTask(resources.Chrome); }
+            if (ff.IsChecked == true) { AddProgressTask(resources.FireFox); }
+            if (libre.IsChecked == true) { AddProgressTask(resources.LibreOffice); }
+            if (zip.IsChecked == true) { AddProgressTask(resources.SevenZip); }
+            if (steam.IsChecked == true) { AddProgressTask(resources.Steam); }
 
             // if checked
             if (sfc.IsChecked == true)
@@ -226,9 +180,10 @@ namespace SecurityInstaller
                 ProgressBar2.Value += 1;
             }
 
-            if (tpApps.IsChecked == true) {
+            if (tpApps.IsChecked == true)
+            {
                 tasks.Add(Task.Run(() => Tools.ThirdPartyUpdater()));
-                resultsProgress.Report("\nUpdateing 3rd Party Applications");
+                resultsProgress.Report("\nUpdating 3rd Party Applications");
                 ProgressBar2.Value += 1;
             }
 
@@ -240,17 +195,20 @@ namespace SecurityInstaller
             }
         }
 
-        private void AddProgressTask(Tool tool, ProgressReportModel report, IProgress<ProgressReportModel> progress, IProgress<int> progressBar2)
+        private void AddProgressTask(Tool tool)
         {
             // Check if we are downloading / installing / running our tasks
             bool downloadBool = (bool)download.IsChecked;
             bool installBool = (bool)install.IsChecked;
             bool runBool = (bool)run.IsChecked;
 
+            // Add to download List
+            report.DownloadPercentagesList.Add(tool);
+
             // create progress reporter to update specific value
-            var progressVal = new Progress<int>(value =>
+            IProgress<int> progressVal = new Progress<int>(value =>
             {
-                // update report model
+                // Update our tool refrence
                 tool.PercentageComplete = value;
 
                 // send updated report model to event
@@ -258,7 +216,7 @@ namespace SecurityInstaller
             });
 
             // add task with reporters
-            tasks.Add(Downloader.StartDownload(tool, progressVal, progressBar2, resultsProgress, downloadBool, installBool, runBool));
+            tasks.Add(Downloader.StartDownload(tool, progressVal, progressBarProgress, resultsProgress, downloadBool, installBool, runBool));
         }
 
         /// <summary>
@@ -352,10 +310,6 @@ namespace SecurityInstaller
                 libre.IsChecked = false;
                 libre.Opacity = .1;
 
-                adobe.IsEnabled = false;
-                adobe.IsChecked = false;
-                adobe.Opacity = .1;
-
                 zip.IsEnabled = false;
                 zip.IsChecked = false;
                 zip.Opacity = .1;
@@ -377,10 +331,6 @@ namespace SecurityInstaller
                 libre.IsEnabled = true;
                 libre.IsChecked = true;
                 libre.Opacity = 1;
-
-                adobe.IsEnabled = true;
-                adobe.IsChecked = true;
-                adobe.Opacity = 1;
 
                 zip.IsEnabled = true;
                 zip.IsChecked = true;
@@ -409,8 +359,7 @@ namespace SecurityInstaller
             {
                 ProgressBar1.Value = e.TotalPercentageCompleted();
             }
-
-            ProgressText.Text = $"{e.DownloadCompleted}/{e.DownloaderCount} items - Download {e.PercentageComplete}% complete";
+            ProgressText.Text = $"{e.DownloadCompleted}/{e.DownloadCount} items - Download {e.TotalPercentageCompleted()}% complete";
         }
     }
 }

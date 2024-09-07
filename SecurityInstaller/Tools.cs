@@ -31,7 +31,7 @@ public class Tools
         ProcessStartInfo startInfo = new ProcessStartInfo();
         startInfo.UseShellExecute = true;
         startInfo.FileName = "cmd.exe";
-        startInfo.Arguments = "pause | winget upgrade --all";
+        startInfo.Arguments = "pause | /k winget upgrade --all";
         process.StartInfo = startInfo;
         process.Start();
 
@@ -51,7 +51,7 @@ public class Tools
     }
 
     // Make NOC Folder
-    public static async Task<bool> MakeNOC()
+    public static async Task<bool> MakeNOC(Tool Mb, Tool Cc, Tool Gl)
     {
         string dir = @"C:\Users\Public\Desktop\Nerds On Call 800-919NERD";
         // If directory does not exist, create it
@@ -100,21 +100,21 @@ public class Tools
         // Create Shortcutsss
 
         // MB Shortcut
-        if (System.IO.File.Exists(Malwarebytes.ToolLocation))
+        if (System.IO.File.Exists(Mb.ToolLocation))
         {
-            Shortcut("Malwarebytes", Malwarebytes.ToolLocation);
+            Shortcut("Malwarebytes", Mb.ToolLocation);
         }
 
         // CC Shortcut
-        if (System.IO.File.Exists(CCleaner.ToolLocation))
+        if (System.IO.File.Exists(Cc.ToolLocation))
         {
-            Shortcut("CCleaner", CCleaner.ToolLocation);
+            Shortcut("CCleaner", Cc.ToolLocation);
         }
 
         // GU Shortcut
-        if (System.IO.File.Exists(Glary.ShortcutLocation))
+        if (System.IO.File.Exists(Gl.ShortcutLocation))
         {
-            Shortcut("Glary Utilities", Glary.ShortcutLocation);
+            Shortcut("Glary Utilities", Gl.ShortcutLocation);
         }
 
         // ADW Shortcut

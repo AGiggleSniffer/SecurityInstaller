@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows.Controls;
 
 public class ProgressReportModel
 {
     public List<Tool> DownloadPercentagesList = new List<Tool>();
 
-    public int DownloaderCount => DownloadPercentagesList.Count;
+    public int DownloadCount => DownloadPercentagesList.Count;
 
-    public int DownloadCompleted { get; set; } = 0;
-
-    public int PercentageComplete { get; set; } = 0;
+    public int DownloadCompleted = 0;
 
     public int TotalPercentageCompleted()
     {
@@ -17,10 +16,18 @@ public class ProgressReportModel
 
         foreach (Tool tool in DownloadPercentagesList)
         {
-            Debug.WriteLine(tool);
             result += tool.PercentageComplete;
         }
 
-        return result != 0 ? result / DownloaderCount : 0;
+        return result != 0 ? result / DownloadCount : 0;
     }
+
+    //public void UpdateToolPercentage(Tool tool, int percentage)
+    //{
+    //    int index = DownloadPercentagesList.IndexOf(tool);
+    //    if (index > -1) {
+    //        DownloadPercentagesList[index].PercentageComplete = percentage;
+    //    }
+    //}
+
 }

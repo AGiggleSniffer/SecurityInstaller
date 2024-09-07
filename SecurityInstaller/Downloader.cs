@@ -11,28 +11,27 @@ public static class Downloader
     private static readonly ProgressMessageHandler ph = new ProgressMessageHandler(handler);
     private static readonly HttpClient client = new HttpClient(ph);
 
-    public static async Task<bool> StartDownload(Tool tool, IProgress<int> progress, IProgress<int> progressBar2, IProgress<string> results, bool download, bool install, bool run)
+    public static async Task<bool> StartDownload(Tool tool, IProgress<int> progressVal, IProgress<int> progressBar2, IProgress<string> results, bool download, bool install, bool run)
     {
-        var watch = Stopwatch.StartNew();
+        Stopwatch watch = Stopwatch.StartNew();
 
         ph.HttpReceiveProgress += (_, args) =>
         {
-            progress.Report(args.ProgressPercentage);
-            tool.PercentageComplete = args.ProgressPercentage;
+            progressVal.Report(args.ProgressPercentage);
         };
 
         string filePath = Path.Combine(Directory.GetCurrentDirectory(), tool.ToolName);
 
         if (download == true)
         {
-            var rez = await Download(tool.ToolUrl, filePath);
+            string rez = await Download(tool.ToolUrl, filePath);
 
             results.Report($"\n{tool.ToolName} download {rez}\nElapsed Time: {watch.ElapsedMilliseconds}ms");
         }
 
         if (install == true && !(tool.ToolName == "ADWCleaner.exe" || tool.ToolName == "Remote.msi"))
         {
-            var rez = await Task.Run(() => Install(tool.ToolName, tool.ToolCliSwitch, results));
+            string rez = await Task.Run(() => Install(tool.ToolName, tool.ToolCliSwitch, results));
 
             results.Report($"{tool.ToolName} install {rez}\nElapsed Time: {watch.ElapsedMilliseconds}ms");
         }
@@ -77,9 +76,9 @@ public static class Downloader
     {
         try
         {
-            using (var rez = await client.GetStreamAsync(url))
+            using (Stream rez = await client.GetStreamAsync(url))
             {
-                using (var fs = new FileStream(filePath, FileMode.Create))
+                using (FileStream fs = new FileStream(filePath, FileMode.Create))
                 {
                     await rez.CopyToAsync(fs);
                 }
