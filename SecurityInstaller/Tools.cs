@@ -136,7 +136,7 @@ public class Tools
         {
             // Write to Google Chrome
             string value = "https://clients2.google.com/service/update2/crx";
-            string key = @"HKEY_LOCAL_MACHINE\Software\Wow6432Node\Google\Chrome\Extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm";
+            string key = @"HKEY_LOCAL_MACHINE\Software\Wow6432Node\Google\Chrome\Extensions\ddkjiahejlhfcafbddmgiahcphecmpfh";
             Registry.SetValue(key, valueName, value, RegistryValueKind.String);
             return true;
         });
@@ -145,7 +145,7 @@ public class Tools
         {
             /// Write to MS Edge
             string eValue = "https://edge.microsoft.com/extensionwebstorebase/v1/crx";
-            string eKey = @"HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Edge\Extensions\odfafepnkmbhccpbejgmiehpchacaeak";
+            string eKey = @"HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Edge\Extensions\cimighlppcgcoapaliogpjjdehbnofhn";
             Registry.SetValue(eKey, valueName, eValue, RegistryValueKind.String);
             return true;
         });
