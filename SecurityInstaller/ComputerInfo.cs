@@ -94,7 +94,7 @@ public static class ComputerInfo
                             object desc = mo["Description"];
                             object mac = mo["MACAddress"];
 
-                            MACAddress += $"Name: {desc}\n Mac: {mac}\n";
+                            MACAddress += $"Name: {desc}\nMac: {mac}\n";
                         }
 
                         mo.Dispose();
@@ -426,9 +426,9 @@ public static class ComputerInfo
 --------------------------------------------------------
     
     Partitions:
-{Partitions}
+{"\t" + Partitions}
     Local / Physical Drives:
-{Drives}
+{"\t" + Drives}
 
 --------------------------------------------------------
         Mac Address
