@@ -6,7 +6,6 @@ using System.Windows.Input;
 using System.IO;
 using System.Windows.Interop;
 using System.Windows.Threading;
-using System.Windows.Forms;
 using static RoundCorners;
 
 namespace SecurityInstaller
@@ -45,18 +44,21 @@ namespace SecurityInstaller
             timer.Tick += timer_Tick;
             timer.Start();
 
-            // Put hardware string into the correct box
-            string info = await Task<string>.Run(() => ComputerInfo.asset);
-            AssetOutput.Text = info;
-
-            GetPowerInfo();
+            DisplayHardwareInfo();
         }
 
-        private void GetPowerInfo()
+        private async void DisplayHardwareInfo()
         {
-            PowerStatus pwr = SystemInformation.PowerStatus;
-
-            Monitor.Text += pwr.BatteryLifePercent.ToString();
+            name.Text = await Task<string>.Run(() => $"Device: {Environment.MachineName}\nUser: {Environment.UserName}");
+            serialNum.Text = await Task<string>.Run(() => $"{ComputerInfo.BiosInfo[1]}");
+            makeModel.Text = await Task<string>.Run(() => $"{ComputerInfo.BoardInfo[0]}\n{ComputerInfo.ProductName}");
+            osInfo.Text = await Task<string>.Run(() => $"{ComputerInfo.OsInfo}");
+            bios.Text = await Task<string>.Run(() => $"{ComputerInfo.BiosInfo[0]}\n{ComputerInfo.BoardInfo[1]}\nVer: {ComputerInfo.BiosInfo[2]}");
+            storage.Text = await Task<string>.Run(() => $"Partitions:\n{ComputerInfo.Partitions}\nLocal / Physical Drives:\n{ComputerInfo.Drives}");
+            gpu.Text = await Task<string>.Run(() => $"{ComputerInfo.GPU}");
+            memory.Text = await Task<string>.Run(() => $"{ComputerInfo.MaxMemory}GB");
+            cpu.Text = await Task<string>.Run(() => $"{ComputerInfo.CPU}");
+            mac.Text = await Task<string>.Run(() => $"{ComputerInfo.Mac}");
         }
 
         private List<Task<bool>> tasks;
@@ -161,11 +163,6 @@ namespace SecurityInstaller
             if (mb.IsChecked == true) { AddProgressTask(resources.Malwarebytes); }
             if (gu.IsChecked == true) { AddProgressTask(resources.Glary); }
             if (cc.IsChecked == true) { AddProgressTask(resources.CCleaner); }
-            if (chrome.IsChecked == true) { AddProgressTask(resources.Chrome); }
-            if (ff.IsChecked == true) { AddProgressTask(resources.FireFox); }
-            if (libre.IsChecked == true) { AddProgressTask(resources.LibreOffice); }
-            if (zip.IsChecked == true) { AddProgressTask(resources.SevenZip); }
-            if (steam.IsChecked == true) { AddProgressTask(resources.Steam); }
 
             // if checked
             if (sfc.IsChecked == true)
@@ -180,17 +177,17 @@ namespace SecurityInstaller
                 ProgressBar2.Value += 1;
             }
 
-            if (tpApps.IsChecked == true)
-            {
-                tasks.Add(Task.Run(() => Tools.ThirdPartyUpdater()));
-                resultsProgress.Report("\nUpdating 3rd Party Applications");
-                ProgressBar2.Value += 1;
-            }
-
             if (uBlock.IsChecked == true)
             {
                 tasks.Add(Tools.InstallUB());
                 resultsProgress.Report("\nUBlock Origin added to Edge and Chrome");
+                ProgressBar2.Value += 1;
+            }
+
+            if (tpApps.IsChecked == true)
+            {
+                tasks.Add(Task.Run(() => Tools.ThirdPartyUpdater()));
+                resultsProgress.Report("\nThird Party Apps Updating");
                 ProgressBar2.Value += 1;
             }
         }
@@ -291,54 +288,6 @@ namespace SecurityInstaller
 
                 cc.IsEnabled = true;
                 cc.Opacity = 1;
-            }
-        }
-
-        private void CBCpSwitch_Click(object sender, RoutedEventArgs e)
-        {
-            if (cbCpSwitch.IsChecked == false)
-            {
-                chrome.IsEnabled = false;
-                chrome.IsChecked = false;
-                chrome.Opacity = .1;
-
-                ff.IsEnabled = false;
-                ff.IsChecked = false;
-                ff.Opacity = .1;
-
-                libre.IsEnabled = false;
-                libre.IsChecked = false;
-                libre.Opacity = .1;
-
-                zip.IsEnabled = false;
-                zip.IsChecked = false;
-                zip.Opacity = .1;
-
-                steam.IsEnabled = false;
-                steam.IsChecked = false;
-                steam.Opacity = .1;
-            }
-            else if (cbCpSwitch.IsChecked == true)
-            {
-                chrome.IsEnabled = true;
-                chrome.IsChecked = true;
-                chrome.Opacity = 1;
-
-                ff.IsEnabled = true;
-                ff.IsChecked = true;
-                ff.Opacity = 1;
-
-                libre.IsEnabled = true;
-                libre.IsChecked = true;
-                libre.Opacity = 1;
-
-                zip.IsEnabled = true;
-                zip.IsChecked = true;
-                zip.Opacity = 1;
-
-                steam.IsEnabled = true;
-                steam.IsChecked = true;
-                steam.Opacity = 1;
             }
         }
 

@@ -20,7 +20,7 @@ public static class ComputerInfo
                 string format = drive.DriveFormat;
                 string name = drive.Name;
 
-                dInfo += ($"\t{name} {format} - {freeSpace}GB free of:\t{totalSpace}GB\n");
+                dInfo += ($"{name} {format} - {freeSpace}GB free of: {totalSpace}GB\n");
             }
         }
         catch (Exception ex) { return ex.Message; }
@@ -42,7 +42,7 @@ public static class ComputerInfo
                     object size = wmi["Size"];
                     object tSize = Convert.ToInt64(size) / 1073741824;
 
-                    dInfo += $"\t{(string)wmi["Model"]}\t{tSize}GB\n";
+                    dInfo += $"{(string)wmi["Model"]} {tSize}GB";
 
                     wmi.Dispose();
                 }
@@ -65,7 +65,7 @@ public static class ComputerInfo
             {
                 foreach (ManagementObject wmi in searcher.Get())
                 {
-                    gpuInfo += $"{(string)wmi["Name"]}\n\t";
+                    gpuInfo += $"{(string)wmi["Name"]}\n";
 
                     wmi.Dispose();
                 }
@@ -94,7 +94,7 @@ public static class ComputerInfo
                             object desc = mo["Description"];
                             object mac = mo["MACAddress"];
 
-                            MACAddress += $"\tName:\t{desc}\n\tMac:\t{mac}\n";
+                            MACAddress += $"Name: {desc}\n Mac: {mac}\n";
                         }
 
                         mo.Dispose();
@@ -290,7 +290,7 @@ public static class ComputerInfo
         }
         catch (Exception ex) { return ex.Message; }
 
-        return $"{cpuMan}\n\t{info}\n\t{GHz}";
+        return $"{cpuMan}\n{info}\n{GHz}";
     }
 
     // ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem")
@@ -304,7 +304,7 @@ public static class ComputerInfo
             {
                 foreach (ManagementObject wmi in searcher.Get())
                 {
-                    osInfo = $"{((string)wmi["Caption"]).Trim()}\n\tVersion: {(string)wmi["Version"]}\n\tArchitecture: {(string)wmi["OSArchitecture"]}";
+                    osInfo = $"{((string)wmi["Caption"]).Trim()}\nVersion: {(string)wmi["Version"]}\nArchitecture: {(string)wmi["OSArchitecture"]}";
 
                     wmi.Dispose();
                 }
@@ -342,18 +342,18 @@ public static class ComputerInfo
     /// Variables
     ///
 
-    private static readonly string OsInfo = GetOSInformation();
-    private static readonly string[] BoardInfo = GetBoardInfo(); // { boardMaker, boardInfo }
-    private static readonly string[] BiosInfo = GetBiosInfo(); // { biosMaker, biosSerial, biosCaption }
-    private static readonly string ProductName = GetProductName();
-    private static readonly string SystemSku = GetSystemSKU();
-    private static readonly string RamSlots = GetRamSlots();
-    private static readonly string MaxMemory = GetMemory();
-    private static readonly string CPU = GetCpuInfo();
-    private static readonly string GPU = GetGPUInfo();
-    private static readonly string Partitions = GetDriveInfo();
-    private static readonly string Drives = GetDriveInfo2();
-    private static readonly string Mac = GetMacAddress();
+    public static readonly string OsInfo = GetOSInformation();
+    public static readonly string[] BoardInfo = GetBoardInfo(); // { boardMaker, boardInfo }
+    public static readonly string[] BiosInfo = GetBiosInfo(); // { biosMaker, biosSerial, biosCaption }
+    public static readonly string ProductName = GetProductName();
+    public static readonly string SystemSku = GetSystemSKU();
+    public static readonly string RamSlots = GetRamSlots();
+    public static readonly string MaxMemory = GetMemory();
+    public static readonly string CPU = GetCpuInfo();
+    public static readonly string GPU = GetGPUInfo();
+    public static readonly string Partitions = GetDriveInfo();
+    public static readonly string Drives = GetDriveInfo2();
+    public static readonly string Mac = GetMacAddress();
 
     ///
     /// Tidy up
@@ -405,7 +405,7 @@ public static class ComputerInfo
 --------------------------------------------------------
     
 {"\tSticks: " + RamSlots}
-{"\tTotal: " + MaxMemory}
+{"\tTotal: " + MaxMemory}GB
 
             
 --------------------------------------------------------

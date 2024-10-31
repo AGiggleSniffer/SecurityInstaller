@@ -21,13 +21,4 @@ public class ProgressReportModel
 
         return result != 0 ? result / DownloadCount : 0;
     }
-
-    //public void UpdateToolPercentage(Tool tool, int percentage)
-    //{
-    //    int index = DownloadPercentagesList.IndexOf(tool);
-    //    if (index > -1) {
-    //        DownloadPercentagesList[index].PercentageComplete = percentage;
-    //    }
-    //}
-
 }

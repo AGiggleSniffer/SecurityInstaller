@@ -19,6 +19,38 @@
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="False">
 
+    <Window.Resources>
+        <Style x:Key="assetHeader">
+            <Setter Property="ItemsControl.Background"
+                    Value="Transparent" />
+            <Setter Property="ItemsControl.Foreground"
+                    Value="#E8E9ED" />
+            <Setter Property="ItemsControl.BorderThickness"
+                    Value="0,0,0,0" />
+            <Setter Property="ItemsControl.FontSize"
+                    Value="24" />
+            <Setter Property="ItemsControl.FontWeight"
+                    Value="Bold" />
+            <Setter Property="ItemsControl.Margin"
+                    Value="0,10,0,10" />
+        </Style>
+
+        <Style x:Key="assetInfo">
+            <Setter Property="ItemsControl.Background"
+                    Value="Transparent" />
+            <Setter Property="ItemsControl.Foreground"
+                    Value="#C0C1C9" />
+            <Setter Property="ItemsControl.BorderThickness"
+                    Value="0,0,0,0" />
+            <Setter Property="ItemsControl.FontSize"
+                    Value="16" />
+            <Setter Property="ItemsControl.FontWeight"
+                    Value="Bold" />
+            <Setter Property="ItemsControl.Margin"
+                    Value="10,0,0,10" />
+        </Style>
+    </Window.Resources>
+
     <Grid HorizontalAlignment="Left"
           Width="800">
 
@@ -321,78 +353,9 @@
                             </StackPanel>
                         </TabItem>
 
-                        <TabItem x:Name="commonPrograms"
-                                 Header="More Programs"
-                                 Width="100"
-                                 Margin="0,0,0,0">
-                            <StackPanel Background="Transparent"
-                                        Margin="0,30,0,0">
-
-                                <StackPanel.Effect>
-                                    <DropShadowEffect BlurRadius="15"
-                                                      Direction="-8"
-                                                      RenderingBias="Quality"
-                                                      ShadowDepth="2" />
-                                </StackPanel.Effect>
-
-                                <StackPanel.Style>
-                                    <Style TargetType="StackPanel">
-                                        <Setter Property="Cursor"
-                                                Value="Hand" />
-                                    </Style>
-                                </StackPanel.Style>
-
-                                <StackPanel.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform ScaleX="1.1"
-                                                        ScaleY="1.1" />
-                                        <TranslateTransform Y="-15" />
-                                    </TransformGroup>
-                                </StackPanel.RenderTransform>
-
-                                <CheckBox x:Name="cbCpSwitch"
-                                          Content="ALL Common Programs"
-                                          Foreground="#E8E9ED"
-                                          Margin="20,5,0,5"
-                                          Click="CBCpSwitch_Click"
-                                          FontWeight="SemiBold" />
-                                <CheckBox x:Name="chrome"
-                                          Content="Chrome"
-                                          Foreground="#E8E9ED"
-                                          Margin="45,5,0,5"
-                                          IsChecked="False"
-                                          FontWeight="SemiBold"
-                                          Opacity="0.1"/>
-                                <CheckBox x:Name="ff"
-                                          Content="Firefox"
-                                          Foreground="#E8E9ED"
-                                          Margin="45,5,0,5"
-                                          FontWeight="SemiBold"
-                                          Opacity="0.1" />
-                                <CheckBox x:Name="libre"
-                                          Content="Libre Office"
-                                          Foreground="#E8E9ED"
-                                          Margin="45,5,0,5"
-                                          FontWeight="SemiBold"
-                                          Opacity="0.1" />
-                                <CheckBox x:Name="zip"
-                                          Content="7-Zip"
-                                          Foreground="#E8E9ED"
-                                          Margin="45,5,0,5"
-                                          FontWeight="SemiBold"
-                                          Opacity="0.1"/>
-                                <CheckBox x:Name="steam"
-                                          Content="Steam"
-                                          Foreground="#E8E9ED"
-                                          Margin="45,5,0,5"
-                                          FontWeight="SemiBold"
-                                          Opacity="0.1"/>
-                            </StackPanel>
-                        </TabItem>
-
-                        <TabItem x:Name="CBTools"
+                        <TabItem x:Name="tools"
                                  Header="Tools"
-                                 Width="80"
+                                 Width="100"
                                  Margin="0,0,0,0">
                             <StackPanel Background="Transparent"
                                         Margin="0,30,0,0">
@@ -604,17 +567,33 @@
                                                   RenderingBias="Quality"
                                                   ShadowDepth="2" />
                             </Grid.Effect>
-                            <TextBox Name="AssetOutput"
-                                     Background="Transparent"
-                                     Foreground="#E8E9ED"
-                                     TextWrapping="Wrap"
-                                     IsReadOnly="True"
-                                     BorderThickness="0,0,0,0"
-                                     FontWeight="Bold"
-                                     FontSize="16"
-                                     VerticalAlignment="Top">
-                            </TextBox>
-                            <Button Margin="320,295,10,10"
+                            <ScrollViewer Background="Transparent">
+                                <Grid Margin="10,10,10,10">
+                                    <StackPanel>
+                                        <TextBox IsReadOnly="True" Style="{StaticResource assetHeader}">Asset Name:</TextBox>
+                                        <TextBox x:Name="name" IsReadOnly="True" Style="{StaticResource assetInfo}"></TextBox>
+                                        <TextBox IsReadOnly="True" Style="{StaticResource assetHeader}">Serial Number:</TextBox>
+                                        <TextBox x:Name="serialNum" Style="{StaticResource assetInfo}"></TextBox>
+                                        <TextBox IsReadOnly="True" Style="{StaticResource assetHeader}">Make / Model:</TextBox>
+                                        <TextBox x:Name="makeModel"  IsReadOnly="True" Style="{StaticResource assetInfo}"></TextBox>
+                                        <TextBox IsReadOnly="True" Style="{StaticResource assetHeader}">Motherboard:</TextBox>
+                                        <TextBox x:Name="bios" IsReadOnly="True" Style="{StaticResource assetInfo}"></TextBox>
+                                        <TextBox IsReadOnly="True" Style="{StaticResource assetHeader}">Operating System:</TextBox>
+                                        <TextBox x:Name="osInfo" IsReadOnly="True" Style="{StaticResource assetInfo}"></TextBox>
+                                        <TextBox IsReadOnly="True" Style="{StaticResource assetHeader}">Storage:</TextBox>
+                                        <TextBox x:Name="storage" IsReadOnly="True" Style="{StaticResource assetInfo}"></TextBox>
+                                        <TextBox IsReadOnly="True" Style="{StaticResource assetHeader}">Graphics:</TextBox>
+                                        <TextBox x:Name="gpu" IsReadOnly="True" Style="{StaticResource assetInfo}"></TextBox>
+                                        <TextBox IsReadOnly="True" Style="{StaticResource assetHeader}">Memory:</TextBox>
+                                        <TextBox x:Name="memory" IsReadOnly="True" Style="{StaticResource assetInfo}"></TextBox>
+                                        <TextBox IsReadOnly="True" Style="{StaticResource assetHeader}">Processor:</TextBox>
+                                        <TextBox x:Name="cpu" IsReadOnly="True" Style="{StaticResource assetInfo}"></TextBox>
+                                        <TextBox IsReadOnly="True" Style="{StaticResource assetHeader}">MAC Address:</TextBox>
+                                        <TextBox x:Name="mac" IsReadOnly="True" Style="{StaticResource assetInfo}"></TextBox>
+                                    </StackPanel>
+                                </Grid>
+                            </ScrollViewer>
+                            <Button Margin="295,295,35,10"
                                     Name="CopyBtn"
                                     Content="Copy"
                                     FontSize="11"
@@ -652,32 +631,11 @@
                         </Grid>
                     </TabItem>
 
-                    <TabItem x:Name="HWMonitor"
-                             Header="HW Monitor"
-                             Width="80">
-                        <Grid Background="Transparent">
-                            <TextBox x:Name="Monitor"
-                                     Background="Transparent"
-                                     Foreground="DarkOrange"
-                                     Margin="5, 5, 5, 5"
-                                     IsReadOnly="True"
-                                     BorderThickness="0,0,0,0">
-
-                                <TextBox.Effect>
-                                    <DropShadowEffect BlurRadius="30"
-                                                      Direction="-8"
-                                                      RenderingBias="Quality"
-                                                      ShadowDepth="2"
-                                                      Color="DarkOrange" />
-                                </TextBox.Effect>
-                            </TextBox>
-                        </Grid>
-                    </TabItem>
-
                     <TabItem x:Name="DebugProgress"
                              Header="Progress"
                              Width="80">
-                        <Grid Background="Transparent">
+                        <Grid Background="Transparent"
+                              Width="377">
                             <Image Source="Images/cortana.png"
                                    Panel.ZIndex="10"
                                    Margin="237,182,-37,0">
@@ -698,7 +656,7 @@
                             <TextBox x:Name="ScriptOutput"
                                      Background="Transparent"
                                      Foreground="DarkOrange"
-                                     Margin="5, 5, 5, 5"
+                                     Margin="5,5,0,5"
                                      IsReadOnly="True"
                                      BorderThickness="0,0,0,0">
 
