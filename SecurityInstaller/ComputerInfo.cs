@@ -42,7 +42,7 @@ public static class ComputerInfo
                     object size = wmi["Size"];
                     object tSize = Convert.ToInt64(size) / 1073741824;
 
-                    dInfo += $"{(string)wmi["Model"]} {tSize}GB";
+                    dInfo += $"{(string)wmi["Model"]} {tSize}GB\n";
 
                     wmi.Dispose();
                 }
