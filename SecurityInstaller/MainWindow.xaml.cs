@@ -33,16 +33,16 @@ namespace SecurityInstaller
         }
 
         // When window is loaded
-        private async void OnLoad(object sender, RoutedEventArgs e)
+        private void OnLoad(object sender, RoutedEventArgs e)
         {
-            // Start Global Timer with event
-            var timer = new DispatcherTimer();
-            // Change frame tick
-            int tickRate = 50;
-            timer.Interval = TimeSpan.FromMilliseconds(tickRate);
-            // Update animations
-            timer.Tick += timer_Tick;
-            timer.Start();
+            //// Start Global Timer with event
+            //var timer = new DispatcherTimer();
+            //// Change frame tick
+            //int tickRate = 50;
+            //timer.Interval = TimeSpan.FromMilliseconds(tickRate);
+            //// Update animations
+            //timer.Tick += timer_Tick;
+            //timer.Start();
 
             DisplayHardwareInfo();
         }
@@ -296,19 +296,22 @@ namespace SecurityInstaller
         /// </summary>
 
         // on tick specified in "OnLoad" func
-        private void timer_Tick(object sender, EventArgs e)
-        {
+        //private void timer_Tick(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
         // on event call update top progress bar
-        private void ReportProgress(object sender, ProgressReportModel e)
+        private async void ReportProgress(object sender, ProgressReportModel e)
         {
-            if (ProgressBar1.Value < e.TotalPercentageCompleted())
+            int downloadTotal = 0;
+            int newTotal = await Task.Run(e.TotalPercentageCompleted);
+            if (downloadTotal < newTotal)
             {
-                ProgressBar1.Value = e.TotalPercentageCompleted();
+                downloadTotal = e.TotalPercentageCompleted();
             }
-            ProgressText.Text = $"{e.DownloadCompleted}/{e.DownloadCount} items - Download {e.TotalPercentageCompleted()}% complete";
+            ProgressBar1.Value = downloadTotal;
+            ProgressText.Text = $"{e.DownloadCompleted}/{e.DownloadCount} items - Download {downloadTotal}% complete";
         }
     }
 }
