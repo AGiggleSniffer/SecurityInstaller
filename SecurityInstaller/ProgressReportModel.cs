@@ -17,6 +17,6 @@ public class ProgressReportModel
             result += tool.PercentageComplete;
         }
 
-        return result != 0 ? result / DownloadCount : 0;
+        return result;
     }
 }

@@ -35,14 +35,14 @@ namespace SecurityInstaller
         // When window is loaded
         private void OnLoad(object sender, RoutedEventArgs e)
         {
-            //// Start Global Timer with event
-            //var timer = new DispatcherTimer();
-            //// Change frame tick
-            //int tickRate = 50;
-            //timer.Interval = TimeSpan.FromMilliseconds(tickRate);
-            //// Update animations
-            //timer.Tick += timer_Tick;
-            //timer.Start();
+            // Start Global Timer with event
+            var timer = new DispatcherTimer();
+            // Change frame tick
+            int tickRate = 50;
+            timer.Interval = TimeSpan.FromMilliseconds(tickRate);
+            // Update animations
+            timer.Tick += Timer_Tick;
+            timer.Start();
 
             DisplayHardwareInfo();
         }
@@ -61,11 +61,10 @@ namespace SecurityInstaller
             mac.Text = await Task<string>.Run(() => $"{ComputerInfo.Mac}");
         }
 
-        private List<Task<bool>> tasks;
+        private List<Task<bool>> tasks = new List<Task<bool>>();
+        private ProgressReportModel report = new ProgressReportModel();
+
         private ToolResource resources;
-        private ProgressReportModel report;
-        private Progress<ProgressReportModel> progressModel;
-        private IProgress<ProgressReportModel> progress => progressModel;
         private IProgress<string> resultsProgress;
         private IProgress<int> progressBarProgress;
 
@@ -88,10 +87,6 @@ namespace SecurityInstaller
             // Initialize progress report model
             report = new ProgressReportModel();
 
-            // Initialize custom Progress model and event
-            progressModel = new Progress<ProgressReportModel>();
-            progressModel.ProgressChanged += ReportProgress;
-
             // Progress reporter for task completion / error messages
             resultsProgress = new Progress<string>(str =>
             {
@@ -103,11 +98,13 @@ namespace SecurityInstaller
             {
                 ProgressBar2.Value += value;
                 report.DownloadCompleted++;
-                progress.Report(report);
             });
 
             // Add tasks to previous list with progress reporters
             AddTasks();
+
+            // Set Progress bar 1 max value
+            ProgressBar1.Maximum = tasks.Count * 100;
 
             // Set botttom progress bar to amount of tasks to-do
             int count = tasks.Count;
@@ -207,9 +204,6 @@ namespace SecurityInstaller
             {
                 // Update our tool refrence
                 tool.PercentageComplete = value;
-
-                // send updated report model to event
-                progress.Report(report);
             });
 
             // add task with reporters
@@ -246,7 +240,7 @@ namespace SecurityInstaller
         {
             try
             {
-                System.Windows.Clipboard.SetText(ComputerInfo.asset);
+                Clipboard.SetText(ComputerInfo.asset);
             }
             catch
             {
@@ -296,22 +290,20 @@ namespace SecurityInstaller
         /// </summary>
 
         // on tick specified in "OnLoad" func
-        //private void timer_Tick(object sender, EventArgs e)
-        //{
-
-        //}
-
-        // on event call update top progress bar
-        private async void ReportProgress(object sender, ProgressReportModel e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
-            int downloadTotal = 0;
-            int newTotal = await Task.Run(e.TotalPercentageCompleted);
-            if (downloadTotal < newTotal)
+            int downloadTotal = (int)ProgressBar1.Value;
+            int newTotal = report.TotalPercentageCompleted();
+            if (newTotal > downloadTotal)
             {
-                downloadTotal = e.TotalPercentageCompleted();
+                downloadTotal = newTotal;
             }
-            ProgressBar1.Value = downloadTotal;
-            ProgressText.Text = $"{e.DownloadCompleted}/{e.DownloadCount} items - Download {downloadTotal}% complete";
+
+            if (tasks.Count > 0)
+            {
+                ProgressBar1.Value = downloadTotal;
+                ProgressText.Text = $"{report.DownloadCompleted}/{report.DownloadCount} items - Download {downloadTotal / tasks.Count}% complete";
+            }
         }
     }
 }
